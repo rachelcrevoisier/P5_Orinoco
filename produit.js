@@ -2,5 +2,5 @@
 ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
     var listeOursons = JSON.parse(reponse);
 
-var idProduit = $_GET('produit');
-    console.log (idProduit);
+    document.getElementById("row").innerHTML =
+    "Page location is " + window.location.href;
