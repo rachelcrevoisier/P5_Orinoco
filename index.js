@@ -1,8 +1,11 @@
 ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
-    // Transforme la réponse en tableau d'objets JavaScript
-    var teddies = JSON.parse(reponse);
-    // Affiche le titre de chaque film
-    teddies.forEach(function (teddies) {
-        console.log(teddies.name);
-    })
+    var tableaux = JSON.parse(reponse);
+    var tableauxElt = document.getElementById("tableaux");
+    tableaux.forEach(function (tableau) {
+        // Crée une ligne de tableau HTML pour chaque tableau
+        var ligneElt = document.createElement("tr");
+        ligneElt.innerHTML = "<td>" + tableau.imageUrl + "</td>"+"<td>" + tableau.name + "</td>" + "<td>" + tableau.price + "</td>" +
+            "<td>" + tableau.description + "</td>";
+        tableauxElt.appendChild(ligneElt);
+    });
 });
