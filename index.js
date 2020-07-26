@@ -22,7 +22,7 @@ ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
                 divCard.appendChild(cardBody);
 
                 var lienOurson = document.createElement("a");
-                lienOurson.href = "https://rachelcrevoisier.github.io/P5_Orinoco/produit?produit=" + listeProduits._id;
+                lienOurson.href = "https://rachelcrevoisier.github.io/P5_Orinoco/produit.html?produit=" + listeProduits._id;
                 cardBody.appendChild(lienOurson);
         var imageOurson = document.createElement("img");
         imageOurson.setAttribute("class", "card-img-top");
