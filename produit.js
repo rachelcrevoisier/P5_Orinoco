@@ -1,57 +1,35 @@
-// connexion avec le fichier connexion.js
-ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
-    var oursonSelectionne = JSON.parse(reponse);
-
-
 function idProduit (sVar) {
     return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(sVar).replace(/[\.\+\*]/g, "\\$&") 
     + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
   }
   
   idProduit = (idProduit("produit"));
-  
+  console.log(idProduit);
 
-  var listeOursons = JSON.parse(reponse);
-    // Placement au 3ème row
-    var EltRow = document.getElementsByClassName("row");
-    var rowCard = EltRow[1];
-    
-    
-       
-        oursonSelectionne.forEach(function (ourson) {
-            ourson._id = idProduit;
-            var divCol = document.createElement("div");
-            divCol.setAttribute("class", "col-12 col-lg-4");
-                rowCard.appendChild(divCol);
-                // Création div card
-                var divCard = document.createElement("div");
-                divCard.setAttribute("class", "card");
-                divCol.appendChild(divCard);
-                
-                var cardBody = document.createElement("div");
-                cardBody.setAttribute("class", "card-body");
-                divCard.appendChild(cardBody);
-
-                
-        var imageOurson = document.createElement("img");
-        imageOurson.setAttribute("class", "card-img-top");
+  ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
+    var oursonSelectionne = JSON.parse(reponse);
+    var EltTab = document.getElementsByClassName("tableaux");
+    var rowtab = EltTab[0];
+    var creaTable = document.createElement("table");
+    creaTable.setAttribute("class", "col-12 col-lg-4");
+        rowtab.appendChild(creaTable);
         
+    oursonSelectionne.forEach(function (ourson) {
+        if (idProduit = ourson._id){
+          console.log("Tout fonctionne");
+          var imageOurson = document.createElement("img");
+              
         imageOurson.src = ourson.imageUrl;
         imageOurson.setAttribute("width",40);
         imageOurson.setAttribute("Alt", "L'ourson" + ourson.name);
-        cardBody.appendChild(imageOurson);
         
-        var titleOurson = document.createElement("h5");
-        titleOurson.setAttribute("class", "card-title");
-        titleOurson.innerHTML = ourson.name;
-        cardBody.appendChild(titleOurson);
-        var descriptionOurson = document.createElement("p");
-        descriptionOurson.setAttribute("class", "card-text");
-        descriptionOurson.innerHTML = ourson.description;
-        cardBody.appendChild(descriptionOurson);
-        var prixOurson = document.createElement("p");
-        prixOurson.setAttribute("class", "price");
-        prixOurson.innerHTML = ourson.price + "€";
-        cardBody.appendChild(prixOurson);
-    });
+          var ligneElt = document.createElement("tr");
+        ligneElt.innerHTML = "<td>" + imageOurson + "</td>"+"<td>" + ourson.name + "</td>" + "<td>" + ourson.price + "</td>" +
+            "<td>" + ourson.description + "</td>";
+        creaTable.appendChild(ligneElt);
+
+        }else{
+          console.log("Nous avons rencontré un problème dans le choix de votre produit. Veuillez recommencer.");
+        }
+    })
 });
