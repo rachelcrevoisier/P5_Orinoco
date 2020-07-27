@@ -15,7 +15,7 @@ function idProduit (sVar) {
         rowtab.appendChild(creaTable);
         
     oursonSelectionne.forEach(function (ourson) {
-        if (idProduit = ourson._id){
+        if (idProduit === ourson._id){
           console.log("Tout fonctionne");
           var imageOurson = document.createElement("img");
               
