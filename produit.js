@@ -22,9 +22,9 @@ function idProduit (sVar) {
         imageOurson.src = ourson.imageUrl;
         imageOurson.setAttribute("width",40);
         imageOurson.setAttribute("Alt", "L'ourson" + ourson.name);
-        
+        rowtab.appendChild(imageOurson);
           var ligneElt = document.createElement("tr");
-        ligneElt.innerHTML = "<td>" + imageOurson + "</td>"+"<td>" + ourson.name + "</td>" + "<td>" + ourson.price + "</td>" +
+        ligneElt.innerHTML = "<td>" + ourson.imageUrl + "</td>"+"<td>" + ourson.name + "</td>" + "<td>" + ourson.price + "</td>" +
             "<td>" + ourson.description + "</td>";
         creaTable.appendChild(ligneElt);
 
